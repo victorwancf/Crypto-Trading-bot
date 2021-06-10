@@ -25,16 +25,16 @@ def supertrend_st(df, period=7, multiplier=3):
     for current in range(1, len(df.index)):
         previous = current - 1
 
-        if df['close'][current] > df['upperband'][previous]:
+        if df['close'].iloc[current] > df['upperband'].iloc[previous]:
             df['in_uptrend'][current] = True
-        elif df['close'][current] < df['lowerband'][previous]:
+        elif df['close'].iloc[current] < df['lowerband'].iloc[previous]:
             df['in_uptrend'][current] = False
         else:
-            df['in_uptrend'][current] = df['in_uptrend'][previous]
+            df['in_uptrend'].iloc[current] = df['in_uptrend'].iloc[previous]
 
-            if df['in_uptrend'][current] and df['lowerband'][current] < df['lowerband'][previous]:
-                df['lowerband'][current] = df['lowerband'][previous]   #If the previous is higher, keep the previous lowerband
+            if df['in_uptrend'].iloc[current] and df['lowerband'].iloc[current] < df['lowerband'].iloc[previous]:
+                df['lowerband'].iloc[current] = df['lowerband'].iloc[previous]   #If the previous is higher, keep the previous lowerband
 
-            if not df['in_uptrend'][current] and df['upperband'][current] > df['upperband'][previous]:
-                df['upperband'][current] = df['upperband'][previous] #If the previous is lower, keep the previous lowerband
+            if not df['in_uptrend'].iloc[current] and df['upperband'].iloc[current] > df['upperband'].iloc[previous]:
+                df['upperband'].iloc[current] = df['upperband'].iloc[previous] #If the previous is lower, keep the previous lowerband
     return df

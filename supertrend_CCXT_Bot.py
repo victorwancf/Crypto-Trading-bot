@@ -1,3 +1,5 @@
+#Window time synchronize: https://answers.microsoft.com/en-us/windows/forum/windows_10-other_settings-winpc/how-to-force-windows-10-time-to-synch-with-a-time/20f3b546-af38-42fb-a2d0-d4df13cc8f43
+
 import ccxt
 import pandas as pd
 from datetime import datetime
@@ -18,7 +20,7 @@ exchange = ccxt.binance({
 
 Coin = 'ETC/BTC'
 
-in_position = True
+in_position = False
 
 def check_buy_sell_singals(df):
     global in_position
@@ -79,4 +81,3 @@ schedule.every(20).seconds.do(run_bot)
 while True:
     schedule.run_pending()
     time.sleep(1)
-#implement backtrader etc. to plot graph
